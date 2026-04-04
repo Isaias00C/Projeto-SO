@@ -6,7 +6,7 @@ public class ExemploSemaforo {
     // Permite apenas 2 threads por vez
     public static final Semaphore mutex = new Semaphore(1);
     public static final Semaphore items = new Semaphore(0);
-    public static final Semaphore spaces = new Semaphore(5);
+    public static final Semaphore spaces = new Semaphore(8);
     
     public static Integer buffer = 0;
 
@@ -76,14 +76,14 @@ public class ExemploSemaforo {
                 spaces.acquire();
                 mutex.acquire();
                 System.out.println("Thread Produtor " + id + " entrou!");
-                    esperarCpuBound(5);// Simula trabalho
                     buffer++;
-                    System.out.println("buffer valor:" + buffer);
                 mutex.release();
+                esperarCpuBound(60);// Simula trabalho
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
                 System.out.println("Thread Produtor " + id + " liberando...");
+                System.out.println("buffer valor:" + buffer);
                 itens.release();
             }
         }
@@ -109,16 +109,15 @@ public class ExemploSemaforo {
                 itens.acquire();
                 mutex.acquire();
                     System.out.println("Thread Consumidor " + id + " entrou!");
-                    esperarCpuBound(3); // Simula trabalho
                     buffer--;
                     System.out.println("buffer valor:" + buffer);
                 mutex.release();
+                esperarCpuBound(60); // Simula trabalho
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
                 System.out.println("Thread Consumidor " + id + " liberando...");
                 spaces.release();
-                esperarCpuBound(3); // Simula trabalho
             }
         }
     }
