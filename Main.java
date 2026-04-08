@@ -20,7 +20,7 @@ class Crianca implements Runnable {
 
     public Crianca(Buffer buffer, String nome) {
         this.buffer = buffer;
-        this.nome = nome; // Guarda o nome "udson"
+        this.nome = nome; 
     }
 
     @Override
@@ -32,7 +32,7 @@ class Crianca implements Runnable {
                 buffer.mutex.acquire();
                 
                 buffer.n = buffer.n - 1;
-                System.out.println(this.nome + " : tirou 1. Valor de n: " + buffer.n);
+                System.out.println(this.nome + " : tirou || Valor de n: " + buffer.n);
                 
                 buffer.mutex.release();
                 buffer.vazio.release();
@@ -45,13 +45,11 @@ class Crianca implements Runnable {
                 buffer.mutex.acquire();
                 
                 buffer.n = buffer.n + 1;  
-                System.out.println(this.nome + " : devolveu 1. Valor de n: " + buffer.n);
+                System.out.println(this.nome + " : devolveu || Valor de n: " + buffer.n);
                 
                 buffer.cheio.release();
                 buffer.mutex.release();    
                 ///trocar por devolver()
-
-                Thread.sleep(1000); 
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
