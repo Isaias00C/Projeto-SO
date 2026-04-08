@@ -12,7 +12,7 @@ class Buffer {
         this.vazio = new Semaphore(capacidade);
     }
 }
-
+//hehe
 
 class Crianca implements Runnable {
     private Buffer buffer;
@@ -64,7 +64,7 @@ public class Main {
         Buffer buffer = new Buffer(5);
         Thread Crianca1 = new Thread(new Crianca(buffer, "udson"));//adciniorar o tempo por crainaça + metodo para adicionar criancas sem ser pelo codgio
         Thread Crianca2 = new Thread(new Crianca(buffer, "isaias"));
-        Crianca1.setPriority(10);
+        Crianca1.setPriority(10);/// eu moggando isaias
 		Crianca2.setPriority(1);
         Crianca1.start();
         Crianca2.start();
