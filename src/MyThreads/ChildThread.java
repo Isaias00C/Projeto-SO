@@ -29,8 +29,6 @@ public class ChildThread extends Thread{
             if (comecou_com_bola){
                 brinca(tempo_brincar);
 
-                descansa(tempo_esperar);
-
                 caminha_ate_cesto();
 
                 try {
@@ -43,6 +41,8 @@ public class ChildThread extends Thread{
                 SemProducerConsumer.full.release();
 
                 volta_para_canto();
+
+                descansa(tempo_esperar);
 
                 comecou_com_bola = false;
             }else {
@@ -66,8 +66,6 @@ public class ChildThread extends Thread{
 
                 brinca(tempo_brincar);
 
-                descansa(tempo_esperar);
-
                 caminha_ate_cesto();
 
                 try {
@@ -83,6 +81,8 @@ public class ChildThread extends Thread{
                 devolve_bola();
                 SemProducerConsumer.mutex.release();
                 SemProducerConsumer.full.release();
+
+                descansa(tempo_esperar);
             }
         }
     }
