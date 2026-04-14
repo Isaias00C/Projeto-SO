@@ -1,13 +1,12 @@
 package MyThreads;
 
-import MySemaphores.SemProducerConsumer;
+import MySemaphore.SemProducerConsumer;
 
 public class ChildThread extends Thread{
     public final String name;
     public Boolean comecou_com_bola = false;
     public int tempo_esperar;
     public int tempo_brincar;
-    //public int qtd_de_bolas = 0;
 
     public ChildThread(String name, int tempo_brincar, int tempo_esperar) {
         super();
@@ -30,6 +29,16 @@ public class ChildThread extends Thread{
                 brinca(tempo_brincar);
 
                 caminha_ate_cesto();
+
+                System.out.println(SemProducerConsumer.empty.availablePermits());
+
+                try {
+                    SemProducerConsumer.empty.acquire();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+                System.out.println(SemProducerConsumer.empty.availablePermits());
 
                 try {
                     SemProducerConsumer.mutex.acquire();
@@ -81,6 +90,8 @@ public class ChildThread extends Thread{
                 devolve_bola();
                 SemProducerConsumer.mutex.release();
                 SemProducerConsumer.full.release();
+
+                volta_para_canto();
 
                 descansa(tempo_esperar);
             }

@@ -1,6 +1,6 @@
 package MyThreads;
 
-import MySemaphores.SemProducerConsumer;
+import MySemaphore.SemProducerConsumer;
 
 public class Consumer extends  Thread{
     private final String name;
