@@ -30,7 +30,7 @@ public class CourtPanel extends JPanel {
 
     public void setCapacidade(int cap) {
         this.capacidade = cap;
-        ballsInBasket = cap; // start with basket full
+        ballsInBasket = 0; // start with basket full
         repaint();
     }
 

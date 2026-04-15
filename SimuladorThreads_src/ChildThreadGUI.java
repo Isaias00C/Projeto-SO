@@ -50,6 +50,13 @@ public class ChildThreadGUI extends Thread {
         setDaemon(true);
     }
 
+    public static void esperarCpuBound(int segundos) {
+        long tempoLimite = System.currentTimeMillis() + (segundos * 1000L);
+        while (System.currentTimeMillis() < tempoLimite) {
+            
+        }
+    }
+
     @Override
     public void run() {
         while (!isInterrupted()) {
@@ -66,36 +73,47 @@ public class ChildThreadGUI extends Thread {
                     state = 1;
                     walkToBasket();
 
-                    // Deposit ball
-                    SemProducerConsumer.mutex.acquire();
+                    try {
+                        SemProducerConsumer.empty.acquire();
+                    }catch(InterruptedException e){
+                        throw new RuntimeException(e);
+                    }
+                    try {
+                        SemProducerConsumer.mutex.acquire();
+                    }catch (InterruptedException e){
+                        throw new RuntimeException(e);
+                    }
                     hasBall = false;
                     courtPanel.incrementBalls();
                     stateLabel = "devolveu bola";
                     SemProducerConsumer.mutex.release();
                     SemProducerConsumer.full.release();
-
                     // Walk back
                     walkToCorner();
                     stateLabel = "descansando";
                     state = 0;
                     esperar(tempo_esperar);
                     comecou_com_bola = false;
-
                 } else {
                     // No ball: walk to basket -> wait for ball -> take -> play -> return
                     stateLabel = "indo ao cesto";
                     state = 1;
                     walkToBasket();
-
+                    
                     stateLabel = "aguardando bola...";
-                    SemProducerConsumer.full.acquire();
-                    SemProducerConsumer.mutex.acquire();
+                    try {
+                        SemProducerConsumer.full.acquire();
+                    } catch (InterruptedException e) { throw new RuntimeException(e); }
+                    try {
+                        SemProducerConsumer.mutex.acquire();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                     hasBall = true;
                     courtPanel.decrementBalls();
                     stateLabel = "pegou bola!";
                     SemProducerConsumer.mutex.release();
                     SemProducerConsumer.empty.release();
-
                     walkToCorner();
 
                     stateLabel = "brincando";
@@ -107,14 +125,22 @@ public class ChildThreadGUI extends Thread {
                     state = 1;
                     walkToBasket();
 
-                    SemProducerConsumer.empty.acquire();
-                    SemProducerConsumer.mutex.acquire();
+
+                    try {
+                        SemProducerConsumer.empty.acquire();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    try {
+                        SemProducerConsumer.mutex.acquire();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                     hasBall = false;
                     courtPanel.incrementBalls();
-                    stateLabel = "devolveu bola ✓";
+                    stateLabel = "devolveu bola";
                     SemProducerConsumer.mutex.release();
                     SemProducerConsumer.full.release();
-
                     walkToCorner();
                     stateLabel = "descansando";
                     state = 0;
@@ -157,7 +183,7 @@ public class ChildThreadGUI extends Thread {
     }
 
     private void esperar(int segundos) throws InterruptedException {
-        Thread.sleep(segundos * 1000L);
+        esperarCpuBound(segundos);
     }
 
     public void draw(Graphics2D g2, int w, int h, int courtTop) {

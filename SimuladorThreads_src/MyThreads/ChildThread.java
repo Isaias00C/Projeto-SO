@@ -69,26 +69,26 @@ public class ChildThread extends Thread{
     }
 
     private void volta_para_canto() {
-        System.out.println("Criança " + this.name + " voltou para o seu canto");
+        System.out.println("Crianca " + this.name + " voltou para o seu canto");
     }
     private void pega_bola() {
-        System.out.println("Criança " + this.name + " pegou uma bola");
+        System.out.println("Crianca " + this.name + " pegou uma bola");
     }
     
         private void devolve_bola() {
-        System.out.println("Criança " + this.name + " devolveu a bola");
+        System.out.println("Crianca " + this.name + " devolveu a bola");
     }
     
     private void descansa(int t) {
-        System.out.println("Criança " + this.name + " esta descansando");
+        System.out.println("Crianca " + this.name + " esta descansando");
         esperarCpuBound(t);
     }
     private void caminha_ate_cesto() {
-        System.out.println("Criança " + this.name + " esta caminhando ate o cesto");
+        System.out.println("Crianca " + this.name + " esta caminhando ate o cesto");
     }
     
     private void brinca(int t) {
-        System.out.println("Criança " + this.name + " esta brincando");
+        System.out.println("Crianca " + this.name + " esta brincando");
         esperarCpuBound(t);
     }
 

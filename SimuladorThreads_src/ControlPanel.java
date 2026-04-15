@@ -42,7 +42,7 @@ public class ControlPanel extends JPanel {
         // ---- Left section: Parâmetros da criança ----
         JPanel leftSection = new JPanel(new GridBagLayout());
         leftSection.setOpaque(false);
-        leftSection.setBorder(createSectionBorder("Insira os parâmetros da criança:"));
+        leftSection.setBorder(createSectionBorder("Insira os parametros da criança:"));
 
         GridBagConstraints lc = new GridBagConstraints();
         lc.insets = new Insets(5, 8, 5, 8);
@@ -64,7 +64,7 @@ public class ControlPanel extends JPanel {
         lc.gridx = 0; lc.gridy = 1;
         leftSection.add(makeLabel("Bola:"), lc);
         lc.gridx = 1;
-        cbBola = new JComboBox<>(new String[]{"Não", "Sim"});
+        cbBola = new JComboBox<>(new String[]{"Nao", "Sim"});
         cbBola.setFont(FIELD_FONT);
         cbBola.setPreferredSize(new Dimension(120, 28));
         leftSection.add(cbBola, lc);
@@ -143,8 +143,9 @@ public class ControlPanel extends JPanel {
             String nome = tfNome.getText().trim();
             String strBrincar = tfBrincadeira.getText().trim();
             String strDescanso = tfDescanso.getText().trim();
+            String strCesta = tfTamanho.getText().trim();
 
-            if (nome.isEmpty() || strBrincar.isEmpty() || strDescanso.isEmpty()) {
+            if (nome.isEmpty() || strBrincar.isEmpty() || strDescanso.isEmpty() || strCesta.isEmpty() ) {
                 logLabel.setText(" Log: Preencha todos os campos da criança");
                 return;
             }
