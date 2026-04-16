@@ -1,3 +1,4 @@
+import MySemaphore.SemProducerConsumer;
 import MyThreads.ChildThread;
 
 import java.util.Scanner;
@@ -8,16 +9,10 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-//        Thread r1 = new ChildThread("c1", 5, 1);
-//        Thread w1 = new ChildThread("c2",3, 6, true);
-//        Thread w2 = new ChildThread("c3", 10, 1);
-//
-//        r1.start();
-//        w1.start();
-//        w2.start();
 
         System.out.println("Capacidade maxima do cesto? ");
         capacidade_maxima = scanner.nextInt();
+        SemProducerConsumer.empty.release(capacidade_maxima);
 
         while(true){
             System.out.println("inserir uma crianca? (1. sim / 2. nao)");
