@@ -38,13 +38,17 @@ public class ChildThreadGUI extends Thread {
         this.shirtColor = new Color(RNG.nextInt(180) + 50, RNG.nextInt(80), RNG.nextInt(80) + 100);
 
         // Assign a random corner
-        int side = RNG.nextInt(4);
+
+        int side = RNG.nextInt(2);
         switch (side) {
-            case 0: cornerX = 60 + RNG.nextFloat() * 100; cornerY = 0.6f + RNG.nextFloat() * 0.15f; break;
-            case 1: cornerX = 0.75f; cornerY = 0.6f + RNG.nextFloat() * 0.15f; break; // fraction
-            case 2: cornerX = 0.1f + RNG.nextFloat() * 0.15f; cornerY = 0.7f + RNG.nextFloat() * 0.1f; break;
-            default: cornerX = 0.65f + RNG.nextFloat() * 0.15f; cornerY = 0.7f + RNG.nextFloat() * 0.1f; break;
+            case 0: cornerX = 0.05f + RNG.nextFloat() * (0.45f - 0.0f); cornerY = 0.0f + RNG.nextFloat() * (0.75f- 0.0f); break;
+            case 1: cornerX = 0.55f + RNG.nextFloat() * (0.95f - 0.55f); cornerY = 0.0f + RNG.nextFloat() * (0.75f- 0.0f); break;
+            //case 2: cornerX = RNG.nextFloat() ; cornerY = RNG.nextFloat()-0.25f ; break;
+            //default: cornerX = RNG.nextFloat() ; cornerY = RNG.nextFloat()-0.25f ; break;
+            //resultado = MINIMO + RNG.nextFloat() * (MAXIMO - MINIMO);
         }
+
+
         x = cornerX;
         y = cornerY;
         setDaemon(true);
@@ -157,7 +161,11 @@ public class ChildThreadGUI extends Thread {
         // Basket is at center-ish
         basketX = 0.47f + RNG.nextFloat() * 0.06f;
         basketY = 0.5f + RNG.nextFloat() * 0.05f;
+
         moveTo(basketX, basketY);
+        state=0;
+        
+
     }
 
     private void walkToCorner() throws InterruptedException {
