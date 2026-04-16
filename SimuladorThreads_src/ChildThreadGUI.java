@@ -122,6 +122,7 @@ public class ChildThreadGUI extends Thread {
 
                     stateLabel = "brincando";
                     state = 2;
+
                     esperar(tempo_brincar);
 
                     // Return ball
@@ -167,6 +168,8 @@ public class ChildThreadGUI extends Thread {
         
 
     }
+    
+
 
     private void walkToCorner() throws InterruptedException {
         moveTo(cornerX, cornerY);
@@ -220,30 +223,71 @@ public class ChildThreadGUI extends Thread {
         g2.fillOval(px + 2, py + 7, 3, 3);
 
         // Legs
+        //parado=0
+        //andando=1
+        //brincand=2
         g2.setColor(new Color(40, 40, 80));
         if (state == 1) {
-            // walking animation
+            //andando
             long t = System.currentTimeMillis();
+
             int kick = (int)(Math.sin(t / 150.0) * 6);
+
+            g2.setColor(Color.BLACK);
             g2.fillRoundRect(px - 9, py + 35, 8, 14 + kick, 4, 4);
             g2.fillRoundRect(px + 1, py + 35, 8, 14 - kick, 4, 4);
-        } else {
+
+            if (hasBall) {
+                int bx = px + 15;
+                int by = (py + 10);
+                g2.setColor(new Color(230, 100, 20));
+                g2.fillOval(bx, by, 14, 14);
+                g2.setColor(new Color(150, 50, 10));
+                g2.setStroke(new BasicStroke(1f));
+                g2.drawOval(bx, by, 14, 14);
+                g2.drawLine(bx + 7, by, bx + 7, by + 14);
+                g2.drawArc(bx - 3, by + 3, 20, 5, 0, 180);
+            }
+        }
+        //quicando a bola
+        if (state == 2) {
+            long t = System.currentTimeMillis();
+            int alturaQuique = 30;
+            int bounce = (int)(Math.abs(Math.sin(t / 150.0)) * alturaQuique);
+            
             g2.fillRoundRect(px - 9, py + 35, 8, 14, 4, 4);
             g2.fillRoundRect(px + 1, py + 35, 8, 14, 4, 4);
+
+            if (hasBall) {
+                int bx = px + 15;
+                int by = (py + 10) + bounce;
+                g2.setColor(new Color(230, 100, 20));
+                g2.fillOval(bx, by, 14, 14);
+                g2.setColor(new Color(150, 50, 10));
+                g2.setStroke(new BasicStroke(1f));
+                g2.drawOval(bx, by, 14, 14);
+                g2.drawLine(bx + 7, by, bx + 7, by + 14);
+                g2.drawArc(bx - 3, by + 3, 20, 5, 0, 180);
+            }
         }
 
-        // Ball if carrying
-        if (hasBall) {
-            int bx = px + 12;
-            int by = py + 18;
-            g2.setColor(new Color(230, 100, 20));
-            g2.fillOval(bx, by, 14, 14);
-            g2.setColor(new Color(150, 50, 10));
-            g2.setStroke(new BasicStroke(1f));
-            g2.drawOval(bx, by, 14, 14);
-            g2.drawLine(bx + 7, by, bx + 7, by + 14);
-            g2.drawArc(bx - 3, by + 3, 20, 5, 0, 180);
+        if(state==0){
+            g2.fillRoundRect(px - 9, py + 35, 8, 14, 4, 4);
+            g2.fillRoundRect(px + 1, py + 35, 8, 14, 4, 4);
+            
+            if (hasBall) {
+                int bx = px + 12;
+                int by = py + 18;
+                g2.setColor(new Color(230, 100, 20));
+                g2.fillOval(bx, by, 14, 14);
+                g2.setColor(new Color(150, 50, 10));
+                g2.setStroke(new BasicStroke(1f));
+                g2.drawOval(bx, by, 14, 14);
+                g2.drawLine(bx + 7, by, bx + 7, by + 14);
+                g2.drawArc(bx - 3, by + 3, 20, 5, 0, 180);
+            }
         }
+
 
         // Name + state label
         g2.setFont(new Font("Segoe UI", Font.BOLD, 10));
