@@ -78,8 +78,8 @@ public class ControlPanel extends JPanel {
         centerSection.setOpaque(false);
         centerSection.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
 
-        JButton btnInstanciar = makeButton("Instanciar", new Color(60, 100, 200));
-        JButton btnCriar = makeButton("Criar", new Color(50, 160, 70));
+        JButton btnInstanciar = makeButton("Criar Cesto", new Color(60, 100, 200));
+        JButton btnCriar = makeButton("Criar Criança", new Color(50, 160, 70));
         JButton btnDestruir = makeButton("Destruir", new Color(200, 50, 50));
 
         centerSection.add(btnInstanciar);
@@ -93,9 +93,9 @@ public class ControlPanel extends JPanel {
         tfTamanho = makeField(100);
         rightSection.add(tfTamanho);
 
-        JButton btnSetCesto = makeButton("OK", ACCENT2);
-        btnSetCesto.setPreferredSize(new Dimension(60, 28));
-        rightSection.add(btnSetCesto);
+//        JButton btnSetCesto = makeButton("OK", ACCENT2);
+//        btnSetCesto.setPreferredSize(new Dimension(60, 28));
+//        rightSection.add(btnSetCesto);
 
         // ---- Assemble ----
         gbc.gridx = 0; gbc.gridy = 0; gbc.weightx = 0.6;
@@ -136,7 +136,7 @@ public class ControlPanel extends JPanel {
             }
         });
 
-        btnSetCesto.addActionListener(e -> btnInstanciar.doClick());
+//        btnSetCesto.addActionListener(e -> btnInstanciar.doClick());
 
         btnCriar.addActionListener(e -> {
             String nome = tfNome.getText().trim();
