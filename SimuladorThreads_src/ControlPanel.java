@@ -38,10 +38,10 @@ public class ControlPanel extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.anchor = GridBagConstraints.WEST;
 
-        // ---- Left section: Parâmetros da criança ----
+        // ---- Left section: Parâmetros da crianca ----
         JPanel leftSection = new JPanel(new GridBagLayout());
         leftSection.setOpaque(false);
-        leftSection.setBorder(createSectionBorder("Insira os parametros da criança:"));
+        leftSection.setBorder(createSectionBorder("Insira os parametros da crianca:"));
 
         GridBagConstraints lc = new GridBagConstraints();
         lc.insets = new Insets(5, 8, 5, 8);
@@ -79,7 +79,7 @@ public class ControlPanel extends JPanel {
         centerSection.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
 
         JButton btnInstanciar = makeButton("Criar Cesto", new Color(60, 100, 200));
-        JButton btnCriar = makeButton("Criar Criança", new Color(50, 160, 70));
+        JButton btnCriar = makeButton("Criar Crianca", new Color(50, 160, 70));
         JButton btnDestruir = makeButton("Destruir", new Color(200, 50, 50));
 
         centerSection.add(btnInstanciar);
@@ -111,7 +111,7 @@ public class ControlPanel extends JPanel {
         JPanel logWrapper = new JPanel(new BorderLayout());
         logWrapper.setBackground(new Color(10, 15, 35));
         logWrapper.setBorder(new MatteBorder(2, 0, 0, 0, ACCENT));
-        JLabel logLabel = new JLabel(" Log: aguardando ações...");
+        JLabel logLabel = new JLabel(" Log: aguardando acoes...");
         logLabel.setFont(new Font("Monospaced", Font.PLAIN, 11));
         logLabel.setForeground(new Color(180, 220, 180));
         logWrapper.add(logLabel, BorderLayout.WEST);
@@ -145,7 +145,7 @@ public class ControlPanel extends JPanel {
             String strCesta = tfTamanho.getText().trim();
 
             if (nome.isEmpty() || strBrincar.isEmpty() || strDescanso.isEmpty() || strCesta.isEmpty() ) {
-                logLabel.setText(" Log: Preencha todos os campos da criança");
+                logLabel.setText(" Log: Preencha todos os campos da crianca");
                 return;
             }
             try {
@@ -157,7 +157,7 @@ public class ControlPanel extends JPanel {
                 threads.add(crianca);
                 crianca.start();
                 courtPanel.addChild(crianca);
-                logLabel.setText(" Log: Criança '" + nome + "' criada " + (comBola ? "(com bola)" : "(sem bola)"));
+                logLabel.setText(" Log: Crianca '" + nome + "' criada " + (comBola ? "(com bola)" : "(sem bola)"));
                 tfNome.setText(""); tfBrincadeira.setText(""); tfDescanso.setText("");
             } catch (NumberFormatException ex) {
                 logLabel.setText(" Log: Erro - tempos devem ser números inteiros");
