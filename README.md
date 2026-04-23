@@ -1,5 +1,10 @@
 # 🏀 Brincadeira de Criança
 
+Integrantes da equipe: 
+ISAIAS CASTRO DA SILVEIRA GONÇALVES
+JOÃO PEDRO QUEIROZ RODRIGUES
+UDSON MARÇAL DE LIMA MAIA
+
 Simulação visual do problema **Brincadeira de Criança**, usando **Threads** e **Semáforos** em Java, desenvolvido para a disciplina de **Sistemas Operacionais**, lecionada pelo professor **Fernando Parente Garcia**.
 
 Crianças (threads) compartilham um cesto de bolas (recurso limitado), alternando entre pegar, brincar e devolver bolas — com sincronização garantida por semáforos.
