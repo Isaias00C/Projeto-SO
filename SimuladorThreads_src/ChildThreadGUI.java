@@ -40,8 +40,14 @@ public class ChildThreadGUI extends Thread {
 
         int side = RNG.nextInt(2);
         switch (side) {
-            case 0: cornerX = 0.05f + RNG.nextFloat() * (0.45f - 0.0f); cornerY = 0.0f + RNG.nextFloat() * (0.75f- 0.0f); break;
-            case 1: cornerX = 0.55f + RNG.nextFloat() * (0.95f - 0.55f); cornerY = 0.0f + RNG.nextFloat() * (0.75f- 0.0f); break;
+            case 0: // Lado esquerdo
+                cornerX = 0.05f + RNG.nextFloat() * 0.33f;  // 0.05 ~ 0.38
+                cornerY = 0.10f + RNG.nextFloat() * 0.65f;  // 0.10 ~ 0.75
+                break;
+            case 1: // Lado direito
+                cornerX = 0.62f + RNG.nextFloat() * 0.33f;  // 0.62 ~ 0.95
+                cornerY = 0.10f + RNG.nextFloat() * 0.65f;  // 0.10 ~ 0.75
+                break;
             //case 2: cornerX = RNG.nextFloat() ; cornerY = RNG.nextFloat()-0.25f ; break;
             //default: cornerX = RNG.nextFloat() ; cornerY = RNG.nextFloat()-0.25f ; break;
             //resultado = MINIMO + RNG.nextFloat() * (MAXIMO - MINIMO);
@@ -163,7 +169,7 @@ public class ChildThreadGUI extends Thread {
         basketY = 0.5f + RNG.nextFloat() * 0.05f;
 
         moveTo(basketX, basketY);
-        state=0;
+        state=3;
         
 
     }
@@ -204,8 +210,17 @@ public class ChildThreadGUI extends Thread {
         g2.setColor(new Color(0, 0, 0, 60));
         g2.fillOval(px - 14, py + 40, 28, 8);
 
+        Color corCamisa = shirtColor;
+
+        if (state == 0) {
+            float pulso = (float)(Math.sin(System.currentTimeMillis() / 400.0) * 0.5 + 0.5); // 0.0 ~ 1.0
+            int r = (int)(shirtColor.getRed()   * pulso);
+            int g = (int)(shirtColor.getGreen() * pulso);
+            int b = (int)(shirtColor.getBlue()  * pulso);
+            corCamisa = new Color(r, g, b);
+        }
         // Body
-        g2.setColor(shirtColor);
+        g2.setColor(corCamisa);
         g2.fillRoundRect(px - 10, py + 14, 20, 22, 6, 6);
 
         // Head
@@ -270,7 +285,7 @@ public class ChildThreadGUI extends Thread {
             }
         }
 
-        if(state==0){
+        if(state==0 || state == 3){
             g2.fillRoundRect(px - 9, py + 35, 8, 14, 4, 4);
             g2.fillRoundRect(px + 1, py + 35, 8, 14, 4, 4);
             
@@ -285,7 +300,7 @@ public class ChildThreadGUI extends Thread {
                 g2.drawLine(bx + 7, by, bx + 7, by + 14);
                 g2.drawArc(bx - 3, by + 3, 20, 5, 0, 180);
             }
-        }
+    }
 
 
         // Name + state label
