@@ -1,6 +1,6 @@
-# 🏀 Simulador de Threads — Produtor/Consumidor
+# 🏀 Brincadeira de Criança
 
-Simulação visual do problema clássico de **Produtor/Consumidor** usando **Threads** e **Semáforos** em Java, desenvolvido para a disciplina de **Sistemas Operacionais**.
+Simulação visual do problema **Brincadeira de Criança**, usando **Threads** e **Semáforos** em Java, desenvolvido para a disciplina de **Sistemas Operacionais**, lecionada pelo professor **Fernando Parente Garcia**.
 
 Crianças (threads) compartilham um cesto de bolas (recurso limitado), alternando entre pegar, brincar e devolver bolas — com sincronização garantida por semáforos.
 
@@ -39,8 +39,6 @@ Crianças (threads) compartilham um cesto de bolas (recurso limitado), alternand
 projeto/
 ├── MySemaphores/
 │   └── SemProducerConsumer.java   # Semáforos compartilhados (mutex, full, empty)
-├── MyThreads/
-│   └── ChildThread.java           # Thread base (versão console)
 ├── MainGUI.java                   # Ponto de entrada da aplicação Swing
 ├── ControlPanel.java              # Painel de controle (inputs e botões)
 ├── CourtPanel.java                # Quadra de basquete (renderização gráfica)
