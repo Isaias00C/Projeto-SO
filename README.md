@@ -134,4 +134,4 @@ java -jar SimuladorThreads.jar
 ## 📚 Disciplina
 
 Trabalho desenvolvido para a disciplina de **Sistemas Operacionais**  
-Universidade: UFC — Universidade Federal do Ceará  
+Universidade: IFCE - Instituto Federal de Educação, Ciência e Tecnologia do Ceará | Campus Fortaleza
